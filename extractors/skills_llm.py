@@ -6,6 +6,18 @@ from abc import ABC, abstractmethod
 
 LLMCallable = Callable[[str], str]
 
+_SYSTEM_PROMPT = (
+    "You are a resume parsing assistant. "
+    "You extract professional and technical skills only."
+)
+
+_USER_PROMPT_TEMPLATE = (
+    "Extract all relevant skills from the resume below.\n"
+    "Return ONLY a valid JSON array of strings.\n\n"
+    "Resume:\n{resume_text}"
+)
+
+
 class BaseSkillsLLMExtractor(ABC):
     @abstractmethod
     def extract_skills(self, result_raw_string: str) -> List[str]:
@@ -32,18 +44,8 @@ class BaseSkillsLLMExtractor(ABC):
 class OllamaSkillsExtractor(BaseSkillsLLMExtractor):
     def __init__(self, model: str = "llama3"):
         self._model = model
-
-        # SYSTEM and USER prompts are separated
-        self._system_prompt = (
-            "You are a resume parsing assistant. "
-            "You extract professional and technical skills only."
-        )
-
-        self._user_prompt_template = (
-            "Extract all relevant skills from the resume below.\n"
-            "Return ONLY a valid JSON array of strings.\n\n"
-            "Resume:\n{resume_text}"
-        )
+        self._system_prompt = _SYSTEM_PROMPT
+        self._user_prompt_template = _USER_PROMPT_TEMPLATE
 
     def extract_skills(self, text: str) -> List[str]:
         import ollama 
@@ -77,17 +79,8 @@ class AzureOpenAISkillsExtractor(BaseSkillsLLMExtractor):
             api_version="2024-02-01",
         )
 
-        # SYSTEM and USER prompts are separated
-        self._system_prompt = (
-            "You are a professional resume parser. "
-            "Your task is to extract technical and professional skills."
-        )
-
-        self._user_prompt_template = (
-            "From the resume below, extract a list of skills.\n"
-            "Return ONLY a JSON array of strings.\n\n"
-            "Resume:\n{resume_text}"
-        )
+        self._system_prompt = _SYSTEM_PROMPT
+        self._user_prompt_template = _USER_PROMPT_TEMPLATE
 
     def extract_skills(self, text: str) -> List[str]:
         user_prompt = self._user_prompt_template.format(resume_text=text)
