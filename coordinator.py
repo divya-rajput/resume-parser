@@ -1,7 +1,7 @@
 from typing import Mapping, Dict, List
 
-from .models import ResumeData
-from .extractors.base import FieldExtractor
+from models import ResumeData
+from extractors.base import FieldExtractor
 
 
 class ResumeExtractor:

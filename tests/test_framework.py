@@ -1,10 +1,10 @@
-from resume_parser.framework import ResumeParserFramework
-from resume_parser.coordinator import ResumeExtractor
-from resume_parser.extractors.name_regex import NameRegexExtractor
-from resume_parser.extractors.email_regex import EmailRegexExtractor
-from resume_parser.extractors.skills_llm import BaseSkillsLLMExtractor
-from resume_parser.parsers.base import FileParser
-import resume_parser.parsers as parser_module # Import the actual parser module
+from framework import ResumeParserFramework
+from coordinator import ResumeExtractor
+from extractors.name_regex import NameRegexExtractor
+from extractors.email_regex import EmailRegexExtractor
+from extractors.skills_llm import BaseSkillsLLMExtractor
+from parsers.base import FileParser
+import parsers as parser_module # Import the actual parser module
 
 def test_framework_selects_correct_parser(monkeypatch, tmp_path):
     # 1. Setup fake file

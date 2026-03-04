@@ -1,5 +1,5 @@
-from resume_parser.parsers.pdf_parser import PDFParser
-from resume_parser.parsers.word_parser import WordParser
+from parsers.pdf_parser import PDFParser
+from parsers.word_parser import WordParser
 
 
 # ---------- PDF Dummies ----------

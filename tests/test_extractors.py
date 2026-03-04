@@ -1,8 +1,8 @@
 import textwrap
 
-from resume_parser.extractors.name_regex import NameRegexExtractor
-from resume_parser.extractors.email_regex import EmailRegexExtractor
-from resume_parser.extractors.skills_llm import BaseSkillsLLMExtractor
+from extractors.name_regex import NameRegexExtractor
+from extractors.email_regex import EmailRegexExtractor
+from extractors.skills_llm import BaseSkillsLLMExtractor
 
 
 def test_name_regex_extractor_detects_name():

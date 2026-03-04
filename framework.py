@@ -1,10 +1,10 @@
 from pathlib import Path
 from typing import Dict, Type
 
-from .models import ResumeData
-from .parsers.base import FileParser
-from resume_parser.parsers.pdf_parser import PDFParser
-from resume_parser.parsers.word_parser import WordParser
+from models import ResumeData
+from parsers.base import FileParser
+from parsers.pdf_parser import PDFParser
+from parsers.word_parser import WordParser
 
 
 class ResumeParserFramework:
@@ -31,7 +31,7 @@ class ResumeParserFramework:
             raise ValueError(f"Unsupported file type: {suffix}")
 
         # Import dynamically so monkeypatching works
-        from resume_parser import parsers as parser_module
+        import parsers as parser_module
 
         parser_cls: Type[FileParser] = getattr(parser_module, parser_name)
         return parser_cls()

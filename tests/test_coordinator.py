@@ -1,7 +1,7 @@
-from resume_parser.coordinator import ResumeExtractor
-from resume_parser.extractors.name_regex import NameRegexExtractor
-from resume_parser.extractors.email_regex import EmailRegexExtractor
-from resume_parser.extractors.skills_llm import BaseSkillsLLMExtractor
+from coordinator import ResumeExtractor
+from extractors.name_regex import NameRegexExtractor
+from extractors.email_regex import EmailRegexExtractor
+from extractors.skills_llm import BaseSkillsLLMExtractor
 
 
 def test_resume_extractor_end_to_end():
