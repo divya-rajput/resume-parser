@@ -1,0 +1,5 @@
+pytest
+PyPDF2
+python-docx
+ollama
+openai
